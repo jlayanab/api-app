@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_162100) do
+ActiveRecord::Schema.define(version: 2021_02_25_193617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 2020_08_21_162100) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "images", force: :cascade do |t|
+    t.string "ruta"
+    t.string "status"
+    t.bigint "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_images_on_users_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -43,12 +52,37 @@ ActiveRecord::Schema.define(version: 2020_08_21_162100) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "levels", force: :cascade do |t|
+    t.string "semestre"
+    t.bigint "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_levels_on_users_id"
+  end
+
+  create_table "parameters", force: :cascade do |t|
+    t.string "pathfinal"
+    t.string "statusfinal"
+    t.bigint "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_parameters_on_users_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "Identification"
+    t.string "Nombres"
+    t.string "Apellidos"
+    t.string "Facultad"
+    t.string "Nivel"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "images", "users", column: "users_id"
+  add_foreign_key "levels", "users", column: "users_id"
+  add_foreign_key "parameters", "users", column: "users_id"
 end

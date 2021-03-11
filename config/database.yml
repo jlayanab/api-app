@@ -12,6 +12,7 @@ default: &default
 development:
   <<: *default
   adapter: postgresql
+  host: localhost
   database: api_app
   encoding: unicode
   pool: 5
