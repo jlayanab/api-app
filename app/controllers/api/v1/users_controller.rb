@@ -8,10 +8,6 @@ class Api::V1::UsersController < ApplicationController
         render json: @users
     end
 
-    def show
-      @user = User.find(params[:id])
-    end
-
     # GET /users/1
     def show
         #render json: @user
@@ -24,7 +20,6 @@ class Api::V1::UsersController < ApplicationController
 
     # POST /users
     def create
-    
         @user = User.new(user_params)
         if @user.save
           render json: success_json(@user), status: :created
@@ -49,7 +44,7 @@ class Api::V1::UsersController < ApplicationController
 
     #Avatar
     def avatar
-        user = User.find_by(id: params[:id])  
+        user = User.find(params[:user_id])  
         if user&.avatar&.attached?
           redirect_to rails_blob_url(user.avatar)
         else

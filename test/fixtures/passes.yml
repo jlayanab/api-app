@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  ruta: MyString
+  code: 
+  datein: 2021-08-17
+  dateout: 2021-08-17
   status: MyString
-  users: one
 
 two:
-  ruta: MyString
+  code: 
+  datein: 2021-08-17
+  dateout: 2021-08-17
   status: MyString
-  users: two
